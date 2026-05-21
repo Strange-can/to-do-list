@@ -39,8 +39,17 @@ notePopup.addEventListener("click", (event) => {
 })
 
 function displayNotes(arr) {
+    projectPage.querySelectorAll(".note").forEach(el => el.remove())
     for (const note of arr) {
-        projectPage.append(note)
+        projectPage.append(displayNote(note))
     }
+}
+
+function displayNote(note) {
+    const noteDisplay = document.createElement("p")
+    noteDisplay.textContent = `Title: ${note.title}, Priority: ${note.priority}, Due: ${note.dueDate}, Description: ${note.description}`
+    noteDisplay.classList.add("note")
+
+    return noteDisplay
 }
 
