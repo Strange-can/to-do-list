@@ -1,17 +1,46 @@
+import { addNote, getNoteArray } from "./processor"
+
 const projectPage = document.getElementById("project-page")
+const notePopup = document.getElementById("note-form-overlay")
 
 const project1Button = document.getElementById("one")
 project1Button.addEventListener("click", () => {
     projectPage.textContent = ''
-    oneText = document.createElement("p")
-    oneText.textContent = 'this is tasks for project 1'
-    projectPage.append(oneText)
+    projectPage.append(addButton)
 })
 
-const project2Button = document.getElementById("two")
-project2Button.addEventListener("click", () => {
-    projectPage.textContent = ''
-    twoText = document.createElement("p")
-    twoText.textContent = '222222222'
-    projectPage.append(twoText)
+const addButton = document.createElement("button")
+addButton.textContent = "ADD"
+addButton.id = "add"
+addButton.addEventListener("click", () => {
+    projectPage.append(notePopup)
+    notePopup.style.display = "block"
 })
+
+notePopup.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+
+    const formObject = Object.fromEntries(formData.entries())
+
+    addNote(formObject.title, formObject.desc, formObject.due, formObject.priority) 
+
+    notePopup.style.display = "none"
+    document.getElementById("note-form").reset()
+    displayNotes(getNoteArray())
+})
+
+notePopup.addEventListener("click", (event) => {
+    if (event.target === notePopup) {
+        notePopup.style.display = "none"
+        document.getElementById("note-form").reset()
+    }
+})
+
+function displayNotes(arr) {
+    for (const note of arr) {
+        projectPage.append(note)
+    }
+}
+
