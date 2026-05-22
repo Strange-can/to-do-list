@@ -46,10 +46,19 @@ function displayNotes(arr) {
 }
 
 function displayNote(note) {
-    const noteDisplay = document.createElement("p")
-    noteDisplay.textContent = `Title: ${note.title}, Priority: ${note.priority}, Due: ${note.dueDate}, Description: ${note.description}`
-    noteDisplay.classList.add("note")
+    const noteText = document.createElement("p")
+    noteText.textContent = `Title: ${note.title}\t\tDue: ${note.dueDate}`
+    noteText.classList.add("note")
 
-    return noteDisplay
+    const priorityCode = document.createElement("div")
+    priorityCode.classList.add("priority-code")
+
+    const noteDiv = document.createElement("div")
+    noteDiv.classList.add("note-div")
+
+    noteDiv.append(noteText)
+    noteDiv.append(priorityCode)
+
+    return noteDiv
 }
 

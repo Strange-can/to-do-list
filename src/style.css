@@ -116,3 +116,25 @@ li {
     margin-top: 1vh;
     margin-left: auto;
 }
+
+.note-div {
+    display: flex;
+    align-items: center;
+}
+
+.note {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+
+    display: inline-block;
+
+    white-space: pre;
+}
+
+.priority-code {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: green;
+    display: inline-block;
+}
