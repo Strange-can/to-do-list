@@ -1,4 +1,4 @@
-import { addNote, getNoteArray } from "./processor"
+import { addNote, deleteNote, getNoteArray } from "./processor"
 
 const projectPage = document.getElementById("project-page")
 const notePopup = document.getElementById("note-form-overlay")
@@ -39,7 +39,7 @@ notePopup.addEventListener("click", (event) => {
 })
 
 function displayNotes(arr) {
-    projectPage.querySelectorAll(".note").forEach(el => el.remove())
+    projectPage.querySelectorAll(".note-div").forEach(el => el.remove())
     for (const note of arr) {
         projectPage.append(displayNote(note))
     }
@@ -53,11 +53,22 @@ function displayNote(note) {
     const priorityCode = document.createElement("div")
     priorityCode.classList.add("priority-code")
 
+    const description = document.createElement("p")
+    description.textContent = `${note.description}`
+
+    const expandButton = document.createElement("button")
+    expandButton.textContent = "+"
+    expandButton.id = "expand"
+    expandButton.addEventListener("click", () => {
+        noteDiv.append(description)
+    })
+
     const noteDiv = document.createElement("div")
     noteDiv.classList.add("note-div")
 
     noteDiv.append(noteText)
     noteDiv.append(priorityCode)
+    noteDiv.append(expandButton)
 
     return noteDiv
 }
