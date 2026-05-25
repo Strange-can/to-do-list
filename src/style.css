@@ -138,3 +138,7 @@ li {
     background-color: green;
     display: inline-block;
 }
+
+.expanded-div {
+    display: flex;
+}

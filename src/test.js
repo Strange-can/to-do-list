@@ -39,7 +39,7 @@ notePopup.addEventListener("click", (event) => {
 })
 
 function displayNotes(arr) {
-    projectPage.querySelectorAll(".note-div").forEach(el => el.remove())
+    projectPage.querySelectorAll(".note-div, .expanded-div").forEach(el => el.remove())
     for (const note of arr) {
         projectPage.append(displayNote(note))
     }
@@ -56,11 +56,19 @@ function displayNote(note) {
     const description = document.createElement("p")
     description.textContent = `${note.description}`
 
+    const editButton = document.createElement("button")
+    editButton.textContent = 'Edit'
+
+    const expandedDiv = document.createElement("div")
+    expandedDiv.classList.add("expanded-div")
+    expandedDiv.append(description)
+    expandedDiv.append(editButton)
+
     const expandButton = document.createElement("button")
     expandButton.textContent = "+"
     expandButton.id = "expand"
     expandButton.addEventListener("click", () => {
-        noteDiv.append(description)
+        noteDiv.after(expandedDiv)
     })
 
     const noteDiv = document.createElement("div")
