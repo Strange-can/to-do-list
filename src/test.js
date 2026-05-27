@@ -17,14 +17,14 @@ addButton.addEventListener("click", () => {
     notePopup.style.display = "block"
 })
 
-notePopup.addEventListener('submit', (event) => {
+notePopup.addEventListener("submit", (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.target)
 
     const formObject = Object.fromEntries(formData.entries())
 
-    addNote(formObject.title, formObject.desc, formObject.due, formObject.priority) 
+    addNote(formObject.title, formObject.description, formObject.dueDate, formObject.priority) 
 
     notePopup.style.display = "none"
     document.getElementById("note-form").reset()
@@ -58,6 +58,10 @@ function displayNote(note) {
 
     const editButton = document.createElement("button")
     editButton.textContent = 'Edit'
+    editButton.addEventListener("click", () => {
+    projectPage.append(notePopup)
+    notePopup.style.display = "block"
+})
 
     const expandedDiv = document.createElement("div")
     expandedDiv.classList.add("expanded-div")
